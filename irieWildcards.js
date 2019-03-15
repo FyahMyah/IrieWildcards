@@ -1,19 +1,20 @@
 const WILDCARD = '@@';
 
 function translateRegex(string){
+	
+  	function removeCharacter(str, char_pos) {
+            var part1 = str.substring(0, char_pos);
+            var part2 = str.substring(char_pos + 1, str.length);
+            return (part1 + part2);
+        }
+	
 	function escapeRegExp(text) {
-
-		var last;
-		for (var i = 0; i < text.length; i++) {
-
-			if(text.charAt(i) == '\\'){
-				console.log(text.charAt(i))
-				last = text.charAt(i);
-
-			}
-		}
-
-		return text;
+	   for (var i = text.length - 1; i >= 0; i--){
+                if(text.charAt(i) == '\\'){
+                    text = removeCharacter(text, i);
+                }
+            }
+            return text;
 	}
 	var wildcard = '';
 	var wildcards = string.split('.*')
